@@ -45,6 +45,10 @@ shell                    Exploit the vulnerability to get a shell
 -h, --help               Display this message
 ```
 
+###Demo
+
+![nayra](https://cloud.githubusercontent.com/assets/12601189/8551306/a78ded2c-24cd-11e5-8493-a71824533352.gif)
+
 ###About
 This tool was created by: __@codexlynx__.
 
