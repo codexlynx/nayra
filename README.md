@@ -1,2 +1,0 @@
-# nayra
-LFI Exploitation Tool
