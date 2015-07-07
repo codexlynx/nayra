@@ -1,0 +1,7 @@
+# Change Log
+All notable changes to this project will be documented in this file.
+
+2015-06-15  CodexLynx  <@codexlynx>
+
+* 2015-07-07 The first published version of the tool was finished
+* 2015-07-07 Initial Commint in GitHub.com
