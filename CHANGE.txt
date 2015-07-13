@@ -5,3 +5,7 @@ All notable changes to this project will be documented in this file.
 
 * 2015-07-07 The first published version of the tool was finished
 * 2015-07-07 Initial Commint in GitHub.com
+* 2015-07-07 Remove unnecessary library (uuid)
+* 2015-07-07 README.md updated
+* 2015-07-13 .pyc removed files
+* 2015-07-13 CHANGE.txt updated (this file)
