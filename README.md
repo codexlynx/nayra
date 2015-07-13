@@ -1,7 +1,7 @@
 ##Nayra - LFI Exploitation Tool
 --------
 This is a small tool to exploit a LFI (Local File Inclusion) web vulnerability.
-The tool provide a functional shell prompt. In the future, I will add some extras options very useful.
+The tool provide a functional shell prompt. In the future, I will add some very useful extra options.
 
 ###Disclaimer
 
