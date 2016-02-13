@@ -20,19 +20,22 @@ This tool is subject under the following license:
 
 ###Usage
 * __Required Parameters__:
-`
--t, --type              Specifies the type of action
--u, --url                URL vulnerable to LFI (Local File Inclusion)
-`
 
- * __List of types__:
-`
+```
+-t, --type              Specifies the type of action
+-u, --url               URL vulnerable to LFI (Local File Inclusion)
+```
+
+* __List of types__:
+
+```
 shell                    Exploit the vulnerability to get a shell
 upload                   Upload a file to remote server
-`
+```
 
- * __Optional Parameters__:
-`
+* __Optional Parameters__:
+ 
+```
 -m, --method (=GET)      It can be -> [GET|POST]
 -n, --name (=php_1)      Used to specify the corresponding attack
                          payload in "data.json"
@@ -42,11 +45,13 @@ upload                   Upload a file to remote server
 -c, --cookies            Session cookies
 -x, --proxy              Using a proxy -> [http://user:passwd@host:port]
 -p, --path               When it is necessary to make a directory traversal
-`
+```
+
 * __Other Parameters__:
-`
+
+```
 -h, --help               Display this message
-`
+```
 
 ###Demo
 
