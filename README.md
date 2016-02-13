@@ -12,7 +12,7 @@ This tool is designed only for __educational__ purposes and __ethical__ hacking.
 This tool is subject under the following license:
 
  >Creative Commons Attribution-ShareAlike 3.0
-		
+
  ![](https://licensebuttons.net/l/by-sa/3.0/88x31.png "Creative Commons")
 
  More Info: [Here](https://creativecommons.org/licenses/by-sa/3.0/ "Legal Description")
@@ -20,30 +20,33 @@ This tool is subject under the following license:
 
 ###Usage
 * __Required Parameters__:
-```python
+`
 -t, --type              Specifies the type of action
 -u, --url                URL vulnerable to LFI (Local File Inclusion)
-```
+`
 
  * __List of types__:
-```python
+`
 shell                    Exploit the vulnerability to get a shell
-```
+upload                   Upload a file to remote server
+`
 
  * __Optional Parameters__:
-```python
+`
 -m, --method (=GET)      It can be -> [GET|POST]
--l, --lang (=php)        Used to specify the corresponding attack
+-n, --name (=php_1)      Used to specify the corresponding attack
                          payload in "data.json"
+
+-f, --file               File to upload (Only "upload" type)
 
 -c, --cookies            Session cookies
 -x, --proxy              Using a proxy -> [http://user:passwd@host:port]
 -p, --path               When it is necessary to make a directory traversal
-```
+`
 * __Other Parameters__:
-```python
+`
 -h, --help               Display this message
-```
+`
 
 ###Demo
 

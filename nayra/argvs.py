@@ -1,12 +1,12 @@
 import sys
 
-class parser(object):
+class Parser(object):
 
     def __init__(self):
         self.type = ''
         self.url = ''
         self.method = 'GET'
-        self.lang = 'php'
+        self.name = 'php_1'
         self.cookies = None
         self.proxy = ''
         self.path = 0
@@ -33,8 +33,8 @@ class parser(object):
                 elif opt == '-m' or opt == '--method':
                     self.method = value
 
-                elif opt == '-l' or opt == '--lang':
-                    self.lang = value
+                elif opt == '-n' or opt == '--name':
+                    self.name = value
 
                 elif opt == '-c' or opt == '--cookies':
                     self.cookies = value

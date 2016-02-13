@@ -9,3 +9,4 @@ All notable changes to this project will be documented in this file.
 * 2015-07-07 README.md updated
 * 2015-07-13 .pyc removed files
 * 2015-07-13 CHANGE.txt updated (this file)
+* 2016-02-13 Add new feature (upload) and code fix
