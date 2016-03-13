@@ -11,6 +11,7 @@ class Parser(object):
         self.proxy = ''
         self.path = 0
         self.file = ''
+        self.argvs = ''
         self.help = False
 
     def parse(self):
@@ -47,6 +48,9 @@ class Parser(object):
 
                 elif opt == '-f' or opt == '--file':
                     self.file = value
+
+                elif opt == '-a' or opt == '--argvs':
+                    self.argvs = value
 
                 else:
                     self.help = True

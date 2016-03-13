@@ -11,3 +11,4 @@ All notable changes to this project will be documented in this file.
 * 2015-07-13 CHANGE.txt updated (this file)
 * 2016-02-13 Add new feature (upload) and code fix
 * 2016-02-13 Add stderr to stdout in "php_1" payload
+* 2016-03-13 Add new feature (msfvenom)
