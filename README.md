@@ -1,5 +1,8 @@
 ##Nayra - LFI Exploitation Tool
 --------
+
+![python](https://img.shields.io/badge/python-2.7-green.svg?style=flat)
+
 This is a small tool to exploit a LFI (Local File Inclusion) web vulnerability.
 The tool provide a functional shell prompt. In the future, I will add some very useful extra options.
 
