@@ -12,6 +12,7 @@ class Parser(object):
         self.path = 0
         self.file = ''
         self.argvs = ''
+        self.null = False
         self.help = False
 
     def parse(self):
@@ -51,6 +52,9 @@ class Parser(object):
 
                 elif opt == '-a' or opt == '--argvs':
                     self.argvs = value
+
+                elif opt == '-b' or opt == '--null-byte':
+                    self.null = value
 
                 else:
                     self.help = True

